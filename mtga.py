@@ -58,7 +58,7 @@ class mtga_reader:
 			for linha in cursor.fetchall():
 				self.enums[enum_type][linha['Value']] = self.get_card_translation_id(linha['LocId'])
 
-		print(self.enums)
+		return True
 
 	def get_card_translation_id(self, text_id):
 		try:
@@ -122,7 +122,6 @@ class mtga_reader:
 			env = UnityPy.load(file_name)
 
 			for path,obj in env.container.items():
-				# Checa por sprites e texturas2D
 				if obj.type.name in ["Texture2D", "Sprite"]:
 					data = obj.read()
 					img_byte_arr = io.BytesIO()
